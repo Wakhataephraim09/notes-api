@@ -1,8 +1,16 @@
 const express = require('express');
+const cors = require('cors'); // ✅ Added CORS
+
 const app = express();
 const PORT = 3000;
 
+app.use(cors()); // ✅ Enable CORS
 app.use(express.json());
+
+// Root route (fix "Cannot GET /")
+app.get('/', (req, res) => {
+    res.send('Notes API is running 🚀');
+});
 
 // Temporary database
 let notes = [];
